@@ -1,0 +1,20 @@
+<div>
+  <h3>Vývoj cen karet v balíku <i>{{ selectedDeck.name }}</i></h3>
+
+  <div style="width:98%;">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <br />
+
+  <div class="form-check">
+    <input (click)="checkAllDatasets()" checked="checked" type="checkbox" class="form-check-input" id="checkAll">
+    <label style="font-weight: normal" class="form-check-label" for="checkAll">Vybrat vše</label>
+  </div>
+
+  <div class="form-check" *ngFor="let card of selectedDeck.cards">
+    <input (click)="updateDataset(card)" checked="checked" type="checkbox" class="form-check-input" id="card_{{ card.id }}">
+    <label style="font-weight: normal" class="form-check-label" for="card_{{ card.id }}">{{ card.name }} ({{ card.edition}})</label>
+  </div>
+
+</div>

@@ -1,0 +1,34 @@
+<div *ngIf="deck">
+  <div *ngIf="deck.cards && deck.cards.length > 0">
+    <h2>Karty v balíčku <i>{{ deck.name }}</i></h2>
+
+    <form class="form-inline">
+      <input type="text" class="form-control mb-2 mr-sm-2" name="searchText" [(ngModel)]="searchText" placeholder="Jméno karty">
+      <input type="text" class="form-control mb-1 mr-sm-1" name="filterMinPrice" [(ngModel)]="filterMinPrice" placeholder="Minimální cena">
+      <input type="text" class="form-control mb-1 mr-sm-1" name="filterMaxPrice" [(ngModel)]="filterMaxPrice" placeholder="Maximální cena">
+    </form>
+
+    <table id="cardsResultTable" class='table table-stripped'>
+      <thead>
+        <tr>
+          <th>Náhled</th>
+          <th (click)="sortByName()">Jméno</th>
+          <th (click)="sortByEdition()">Edice</th>
+          <th>Počet</th>
+          <th (click)="sortByPrice()">Cena</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let card of deck.cards | cardsNameFilter: searchText | cardsMinPriceFilter: filterMinPrice | cardsMaxPriceFilter: filterMaxPrice">
+          <td><img src="{{ card.imageUrl }}" class="img-thumbnail"></td>
+          <td>{{ card.name }}</td>
+          <td>{{ card.edition }}</td>
+          <td>{{ card.count }}</td>
+          <td>{{ card.price }}</td>
+          <td><button (click)="delete(card)" class="btn btn-danger btn-sm">Smazat</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<app-deck-create></app-deck-create>
+
+<div *ngIf="updateStatusText && updateStatusText != ''" class="alert alert-success" role="alert">
+  {{ updateStatusText }}
+</div>
+
+<h3>Seznam balíčků</h3>
+<h5 *ngIf="decks.length == 0"><i>Načítám seznam z databáze</i></h5>
+
+<table id="decksTable" class='table table-stripped table-hover'>
+  <thead>
+    <tr>
+      <th>Název</th>
+      <th>Počet karet</th>
+      <th>Hodnota balíčku</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let deck of decks" (click)="showDeck(deck)">
+      <td>{{ deck.name }}</td>
+      <td>{{ deck.totalCards }}</td>
+      <td>{{ deck.totalValue }}</td>
+      <td><button (click)="select(deck)" class="btn btn-success btn-sm">Nastavit jako aktivní</button></td>
+      <td><button (click)="updatePrices(deck)" class="btn btn-success btn-sm">Aktualizovat ceny</button></td>
+      <td><button (click)="delete(deck)" class="btn btn-danger btn-sm">Smazat</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<router-outlet></router-outlet>

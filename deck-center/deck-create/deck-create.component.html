@@ -1,0 +1,11 @@
+<div>
+  <h3>Vytvořit balíček</h3>
+
+  <form class="form-inline">
+    <input type="text" class="form-control mb-2 mr-sm-2" name="deckName" (keyup.enter)="create()" [(ngModel)]="deckName" placeholder="Jméno balíčku">
+
+    <button [disabled]="deckName.length < 1" (click)="create()" class="btn btn-success mb-2">Vytvořit</button>
+  </form>
+
+  <hr />
+</div>
